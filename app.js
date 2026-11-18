@@ -29,3 +29,41 @@ constactList.addEventListener('click', (e) => {
             break;
     }
 })
+
+const connectBtn = document.querySelector('.main-btn')
+const contact = document.querySelector('.contact')
+connectBtn.addEventListener('click', e => {
+    e.preventDefault()
+    window.scrollTo({
+        top: contact.offsetTop,
+        behavior: "smooth"
+    })
+})
+
+const scrollBtn = document.createElement('button')
+scrollBtn.classList.add('scroll')
+const scrollLeftArrow = document.createElement('span') 
+const scrollRightArrow = document.createElement('span') 
+scrollLeftArrow.classList.add('left')
+scrollRightArrow.classList.add('right')
+scrollBtn.appendChild(scrollLeftArrow)
+scrollBtn.appendChild(scrollRightArrow)
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY >= contact.offsetTop) {
+        document.body.appendChild(scrollBtn)
+    }
+    else {
+        if (document.querySelector('body > .scroll')) {
+            document.body.removeChild(scrollBtn)
+        }
+    }
+})
+
+scrollBtn.addEventListener('click', e => {
+    e.preventDefault()
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+})
